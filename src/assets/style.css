@@ -6,6 +6,17 @@
 .status-card-root {
   border: 1px solid black;
   width: 300px;
+
+}
+.status-card-title {
+  background-color: #537FE7;
+  color: #181823;
+  font-weight: bold;
+  border-bottom: 1px solid black;
+}
+.question-list-container {
+ 
+  background-color: #F0EEED;
 }
 
 .question-status-square {
