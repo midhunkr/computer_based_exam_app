@@ -5,10 +5,23 @@ import QuestionCard from "./modules/main/questions/questionCard";
 import "./assets/style.css";
 import StatusCard from "./modules/main/status/statusCard";
 import { Container, Row, Col } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
 import { questionAnswerCollection } from "./data/sampleData";
 import ProfileData from "./modules/main/profiledata/profiledata";
+import { useState } from "react";
+import { Button } from "antd";
+
 function App() {
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const handleBackNavigation = () => {
+    if (questionIndex !== 0) {
+      setQuestionIndex((prev) => prev - 1);
+    }
+  };
+  const handleShowNextQuestion = () => {
+    if (questionIndex != questionAnswerCollection.length - 1) {
+      setQuestionIndex((prev) => prev + 1);
+    }
+  };
   return (
     <>
       <Header />
@@ -17,14 +30,24 @@ function App() {
           <Col lg={2} xl={2}>
             <ProfileData />
           </Col>
-          <Col lg={6} xl={6}>
-            <div>
-              {questionAnswerCollection.map((item) => (
-                <QuestionCard questionAnswerData={item} key={item.question} />
-              ))}
+          <Col lg={8} xl={6}>
+            <div className="mt-2">
+              <div>
+                <QuestionCard
+                  questionAnswerData={questionAnswerCollection[questionIndex]}
+                />
+              </div>
+              <div className="d-flex justify-content-between mt-2">
+                <Button type="primary" onClick={handleBackNavigation}>
+                  Back
+                </Button>
+                <Button type="primary" onClick={handleShowNextQuestion}>
+                  Next
+                </Button>
+              </div>
             </div>
           </Col>
-          <Col lg={4} xl={4}>
+          <Col lg={2} xl={4}>
             <div className="d-flex align-items-center justify-content-center">
               <StatusCard />
             </div>

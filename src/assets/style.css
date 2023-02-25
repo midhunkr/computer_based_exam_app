@@ -1,7 +1,21 @@
+/* Question Card Section */
+
 .question-card-root {
   border: 1px solid black;
   width: 800px;
+  height:500px;
 }
+
+.question-title{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 30px;
+}
+.question-options{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+
+}
+
 
 .status-card-root {
   border: 1px solid black;
