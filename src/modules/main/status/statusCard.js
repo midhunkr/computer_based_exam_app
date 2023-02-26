@@ -9,7 +9,7 @@ const StatusCard = () => {
       </div>
       <div className="d-flex flex-wrap justify-content-center question-list-container">
         {questionList.map((item) => (
-          <div className="m-2">
+          <div className="m-2" key={item.number}>
             <QuestionStatusBadge data={item} />
           </div>
         ))}

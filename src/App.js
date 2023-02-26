@@ -27,27 +27,29 @@ function App() {
       <Header />
       <Container fluid>
         <Row>
-          <Col lg={2} xl={2}>
+          <Col lg={12} xl={2}>
             <ProfileData />
           </Col>
-          <Col lg={8} xl={6}>
-            <div className="mt-2">
-              <div>
-                <QuestionCard
-                  questionAnswerData={questionAnswerCollection[questionIndex]}
-                />
-              </div>
-              <div className="d-flex justify-content-between mt-2">
-                <Button type="primary" onClick={handleBackNavigation}>
-                  Back
-                </Button>
-                <Button type="primary" onClick={handleShowNextQuestion}>
-                  Next
-                </Button>
+          <Col lg={12} xl={7}>
+            <div className="d-flex justify-content-center">
+              <div className="mt-2">
+                <div>
+                  <QuestionCard
+                    questionAnswerData={questionAnswerCollection[questionIndex]}
+                  />
+                </div>
+                <div className="d-flex justify-content-between mt-2">
+                  <Button type="primary" onClick={handleBackNavigation}>
+                    Back
+                  </Button>
+                  <Button type="primary" onClick={handleShowNextQuestion}>
+                    Next
+                  </Button>
+                </div>
               </div>
             </div>
           </Col>
-          <Col lg={2} xl={4}>
+          <Col lg={12} xl={3}>
             <div className="d-flex align-items-center justify-content-center">
               <StatusCard />
             </div>

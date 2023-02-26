@@ -1,6 +1,7 @@
 import { Radio } from "antd";
 import { Button } from "antd";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { QuestionCardContext } from "../../../context/QuestionContext";
 const QuestionCard = ({
   styleClassName = "",
   questionAnswerData = {
@@ -10,18 +11,43 @@ const QuestionCard = ({
     questionNumber: null,
   },
 }) => {
+  //context
+  const {
+    candidateResponse,
+    handleSaveAnswer,
+    markQuestionAsVisited,
+    clearResponseFromContext,
+  } = useContext(QuestionCardContext);
+
+  //states
   const [selectedOption, setSelectedOption] = useState(null);
 
+  //callback
   const handleOptionClick = (e) => {
+    let dataToRegister = {
+      selectedOptionIndex: e.target.value,
+      correctOptionIndex: questionAnswerData.correctOptionIndex,
+      questionNumber: questionAnswerData.questionNumber,
+    };
+    handleSaveAnswer(dataToRegister);
     setSelectedOption(e.target.value);
   };
   const handleClearResponse = () => {
     setSelectedOption(null);
+    clearResponseFromContext(questionAnswerData.questionNumber);
   };
 
   useEffect(() => {
     //to clear the previous questions response
-    handleClearResponse();
+    setSelectedOption(null);
+    markQuestionAsVisited(questionAnswerData.questionNumber);
+    let responseArrayIndex = candidateResponse?.findIndex(
+      (response) =>
+        response.questionNumber === questionAnswerData.questionNumber
+    );
+    setSelectedOption(
+      candidateResponse[responseArrayIndex]?.clickedOPtionIndex
+    );
   }, [questionAnswerData.questionNumber]);
 
   return (
@@ -41,7 +67,13 @@ const QuestionCard = ({
         </Radio.Group>
       </div>
       <div className="p-3">
-        <Button onClick={handleClearResponse} color="#E5D1FA">Clear Response</Button>
+        <Button
+          onClick={handleClearResponse}
+          color="#E5D1FA"
+          id="clear_response_button"
+        >
+          Clear Response
+        </Button>
       </div>
     </div>
   );

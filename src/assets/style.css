@@ -3,34 +3,36 @@
 .question-card-root {
   border: 1px solid black;
   width: 800px;
-  height:500px;
+  height: 500px;
+  overflow: auto;
 }
 
-.question-title{
-  font-family: 'Times New Roman', Times, serif;
+.question-title {
+  font-family: "Times New Roman", Times, serif;
   font-size: 30px;
 }
-.question-options{
-  font-family: 'Times New Roman', Times, serif;
+.question-options {
+  font-family: "Times New Roman", Times, serif;
   font-size: 20px;
-
 }
 
+#clear_response_button {
+  background-color: #e5d1fa;
+  font-family: Verdana, Geneva, Tahoma, sans-serif
+}
 
 .status-card-root {
   border: 1px solid black;
   width: 300px;
-
 }
 .status-card-title {
-  background-color: #537FE7;
+  background-color: #537fe7;
   color: #181823;
   font-weight: bold;
   border-bottom: 1px solid black;
 }
 .question-list-container {
- 
-  background-color: #F0EEED;
+  background-color: #f0eeed;
 }
 
 .question-status-square {
