@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Header from "./modules/layout/header/header";
 import QuestionCard from "./modules/main/questions/questionCard";
@@ -10,7 +9,7 @@ import ProfileData from "./modules/main/profiledata/profiledata";
 import { useState } from "react";
 import { Button } from "antd";
 
-function App() {
+const App: React.FC = () => {
   const [questionIndex, setQuestionIndex] = useState(0);
   const handleBackNavigation = () => {
     if (questionIndex !== 0) {
@@ -58,6 +57,6 @@ function App() {
       </Container>
     </>
   );
-}
+};
 
 export default App;
