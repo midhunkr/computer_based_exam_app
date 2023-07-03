@@ -1,30 +1,27 @@
-export const questionAnswerCollection = [
+interface AnswerShape{
+  question:string;
+  options:string[];
+  correctOptionIndex:number;
+  questionNumber:number
+}
+export const questionAnswerCollection:AnswerShape[] = [
   {
     question: "What is the capital of France?",
     options: ["Paris", "Berlin", "Madrid", "Rome"],
     correctOptionIndex: 0,
     questionNumber: 1,
-    isAnswered: true,
-    isVisited: false,
-    isFlagged: false,
   },
   {
     question: "Who is the founder of SpaceX?",
     options: ["Bill Gates", "Elon Musk", "Mark Zuckerberg", "Jeff Bezos"],
     correctOptionIndex: 1,
     questionNumber: 2,
-    isAnswered: true,
-    isVisited: false,
-    isFlagged: false,
   },
   {
     question: "What is the largest mammal in the world?",
     options: ["Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
     correctOptionIndex: 1,
     questionNumber: 3,
-    isAnswered: true,
-    isVisited: false,
-    isFlagged: false,
   },
   {
     question: "Who directed the movie Inception?",
@@ -36,9 +33,6 @@ export const questionAnswerCollection = [
     ],
     correctOptionIndex: 1,
     questionNumber: 4,
-    isAnswered: true,
-    isVisited: false,
-    isFlagged: false,
   },
   {
     question: "Who is the current Prime Minister of Canada?",
@@ -50,9 +44,6 @@ export const questionAnswerCollection = [
     ],
     correctOptionIndex: 0,
     questionNumber: 5,
-    isAnswered: true,
-    isVisited: false,
-    isFlagged: false,
   },
   {
     question: "Who wrote the book 'Beyond Good and Evil'?",
@@ -64,9 +55,6 @@ export const questionAnswerCollection = [
     ],
     correctOptionIndex: 0,
     questionNumber: 6,
-    isAnswered: true,
-    isVisited: false,
-    isFlagged: false,
   },
   {
     question:
@@ -79,18 +67,12 @@ export const questionAnswerCollection = [
     ],
     correctOptionIndex: 1,
     questionNumber: 7,
-    isAnswered: true,
-    isVisited: false,
-    isFlagged: false,
   },
   {
     question: "Who developed the theory of psychoanalysis?",
     options: ["Sigmund Freud", "Carl Jung", "Alfred Adler", "Erik Erikson"],
     correctOptionIndex: 0,
     questionNumber: 8,
-    isAnswered: true,
-    isVisited: false,
-    isFlagged: false,
   },
   {
     question:
@@ -98,9 +80,6 @@ export const questionAnswerCollection = [
     options: ["Epistemology", "Metaphysics", "Phenomenology", "Existentialism"],
     correctOptionIndex: 2,
     questionNumber: 9,
-    isAnswered: true,
-    isVisited: false,
-    isFlagged: false,
   },
   {
     question:
@@ -108,8 +87,5 @@ export const questionAnswerCollection = [
     options: ["Rationalism", "Empiricism", "Idealism", "Existentialism"],
     correctOptionIndex: 1,
     questionNumber: 10,
-    isAnswered: true,
-    isVisited: false,
-    isFlagged: false,
   },
 ];

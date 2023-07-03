@@ -54,10 +54,8 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
     // To clear the previous question's response
     setSelectedOption(null);
     markQuestionAsVisited(questionAnswerData.questionNumber);
-    const responseArrayIndex = candidateResponse?.findIndex(
-      (response) => response.questionNumber === questionAnswerData.questionNumber
-    );
-    setSelectedOption(candidateResponse[responseArrayIndex]?.clickedOptionIndex ?? null);
+    const response = candidateResponse.get(questionAnswerData.questionNumber);
+    setSelectedOption(response?.clickedOptionIndex ?? null);
   }, [questionAnswerData.questionNumber]);
 
   return (
@@ -77,11 +75,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
         </Radio.Group>
       </div>
       <div className="p-3">
-        <Button
-          onClick={handleClearResponse}
-          style={{ color: "#E5D1FA" }}
-          id="clear_response_button"
-        >
+        <Button onClick={handleClearResponse} id="clear_response_button">
           Clear Response
         </Button>
       </div>

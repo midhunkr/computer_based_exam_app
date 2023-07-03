@@ -7,7 +7,7 @@ export interface ResponseData {
 }
 
 export interface QuestionCardContextValue {
-  candidateResponse: ResponseData[];
+  candidateResponse: Map<number, ResponseData>;
   handleSaveAnswer: (questionData: {
     selectedOptionIndex: number;
     correctOptionIndex: number;
@@ -19,7 +19,7 @@ export interface QuestionCardContextValue {
 }
 
 export const QuestionCardContext = createContext<QuestionCardContextValue>({
-  candidateResponse: [],
+  candidateResponse: new Map(),
   handleSaveAnswer: () => {},
   visitedQuestions: new Set(),
   markQuestionAsVisited: () => {},
@@ -29,7 +29,8 @@ export const QuestionCardContext = createContext<QuestionCardContextValue>({
 const QuestionCardContextProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [candidateResponse, setCandidateResponse] = useState<ResponseData[]>([]);
+  const [candidateResponse, setCandidateResponse] = useState<Map<number, ResponseData>>(new Map());
+  //contains the visited question numbers 
   const [visitedQuestions, setVisitedQuestions] = useState<Set<number>>(
     new Set()
   );
@@ -39,37 +40,26 @@ const QuestionCardContextProvider: React.FC<{ children: ReactNode }> = ({
     correctOptionIndex: number;
     questionNumber: number;
   }) => {
-    let dataToPush: ResponseData = {
-      clickedOptionIndex: questionData.selectedOptionIndex,
-      correctOptionIndex: questionData.correctOptionIndex,
-      questionNumber: questionData.questionNumber,
+    const { selectedOptionIndex, correctOptionIndex, questionNumber } = questionData;
+    const dataToPush: ResponseData = {
+      clickedOptionIndex: selectedOptionIndex,
+      correctOptionIndex: correctOptionIndex,
+      questionNumber: questionNumber,
     };
-    const existingResponseIndex = candidateResponse.findIndex(
-      (response) => response.questionNumber === dataToPush.questionNumber
-    );
-    if (existingResponseIndex !== -1) {
-      setCandidateResponse((prev) => {
-        const updatedResponses = [...prev];
-        updatedResponses[existingResponseIndex] = dataToPush;
-        return updatedResponses;
-      });
-    } else {
-      setCandidateResponse((prev) => [...prev, dataToPush]);
-    }
+
+    setCandidateResponse((prev) => {
+      const updatedResponses = new Map(prev);
+      updatedResponses.set(questionNumber, dataToPush);
+      return updatedResponses;
+    });
   };
 
   const clearResponseFromContext = (questionNumber: number) => {
-    const responseIndex = candidateResponse.findIndex(
-      (response) => response.questionNumber === questionNumber
-    );
-
-    if (responseIndex !== -1) {
-      setCandidateResponse((prev) => {
-        const updatedResponses = [...prev];
-        updatedResponses.splice(responseIndex, 1);
-        return updatedResponses;
-      });
-    }
+    setCandidateResponse((prev) => {
+      const updatedResponses = new Map(prev);
+      updatedResponses.delete(questionNumber);
+      return updatedResponses;
+    });
   };
 
   const markQuestionAsVisited = (questionNumber: number) => {

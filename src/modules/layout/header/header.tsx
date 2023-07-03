@@ -1,10 +1,12 @@
 import React, { CSSProperties } from "react";
+import CountdownTimer from "../../components/remainingtime";
 
 const Header: React.FC = () => {
   return (
-    <header style={styles.header}>
+    <div style={styles.header} className="d-flex justify-content-between">
       <h1 style={styles.heading}>Exam</h1>
-    </header>
+      <CountdownTimer timeLimitInMinutes={1}/>
+    </div>
   );
 };
 
