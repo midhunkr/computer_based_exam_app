@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import CandidateImage from "../../../assets/photos/candidate_image.jpg";
+import CandidateImage from "../../../assets/photos/candidate_image.jpeg";
 import { CandidateContext } from "../../../context/CandidateContext";
 
 const ProfileData: React.FC = () => {

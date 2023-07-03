@@ -1,4 +1,4 @@
-declare module "*.jpg" {
+declare module "*.jpeg" {
     const value: any;
     export = value;
   }
