@@ -1,5 +1,6 @@
 import { questionList } from "../../../data/sampleData";
 import QuestionStatusBadge from "../../components/questionstatusbadge";
+import { questionAnswerCollection } from "../../../data/sampleData";
 
 const StatusCard = () => {
   return (
@@ -8,13 +9,13 @@ const StatusCard = () => {
         Exam Status
       </div>
       <div className="d-flex flex-wrap justify-content-center question-list-container">
-        {questionList.map((item) => (
+        {questionAnswerCollection.map((item) => (
           <div className="m-2" key={item.number}>
             <QuestionStatusBadge data={item} />
           </div>
         ))}
       </div>
-      <div>Red:Visited but not answered Green:Answered Yellow:Visited</div>
+      <div>Red:Not visited Green:Answered Yellow:Visited</div>
     </div>
   );
 };

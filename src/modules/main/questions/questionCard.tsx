@@ -1,8 +1,20 @@
-import { Radio } from "antd";
-import { Button } from "antd";
+import { Radio, Button, RadioChangeEvent } from "antd";
 import { useContext, useEffect, useState } from "react";
-import { QuestionCardContext } from "../../../context/QuestionContext";
-const QuestionCard = ({
+import { QuestionCardContext, QuestionCardContextValue } from "../../../context/QuestionContext";
+
+interface QuestionAnswerData {
+  question: string;
+  options: string[];
+  correctOptionIndex: number | null;
+  questionNumber: number | null;
+}
+
+interface QuestionCardProps {
+  styleClassName?: string;
+  questionAnswerData?: QuestionAnswerData;
+}
+
+const QuestionCard: React.FC<QuestionCardProps> = ({
   styleClassName = "",
   questionAnswerData = {
     question: "",
@@ -11,20 +23,20 @@ const QuestionCard = ({
     questionNumber: null,
   },
 }) => {
-  //context
+  // Context
   const {
     candidateResponse,
     handleSaveAnswer,
     markQuestionAsVisited,
     clearResponseFromContext,
-  } = useContext(QuestionCardContext);
+  } = useContext<QuestionCardContextValue>(QuestionCardContext);
 
-  //states
-  const [selectedOption, setSelectedOption] = useState(null);
+  // States
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
 
-  //callback
-  const handleOptionClick = (e) => {
-    let dataToRegister = {
+  // Callback
+  const handleOptionClick = (e: RadioChangeEvent) => {
+    const dataToRegister = {
       selectedOptionIndex: e.target.value,
       correctOptionIndex: questionAnswerData.correctOptionIndex,
       questionNumber: questionAnswerData.questionNumber,
@@ -32,22 +44,20 @@ const QuestionCard = ({
     handleSaveAnswer(dataToRegister);
     setSelectedOption(e.target.value);
   };
+
   const handleClearResponse = () => {
     setSelectedOption(null);
     clearResponseFromContext(questionAnswerData.questionNumber);
   };
 
   useEffect(() => {
-    //to clear the previous questions response
+    // To clear the previous question's response
     setSelectedOption(null);
     markQuestionAsVisited(questionAnswerData.questionNumber);
-    let responseArrayIndex = candidateResponse?.findIndex(
-      (response) =>
-        response.questionNumber === questionAnswerData.questionNumber
+    const responseArrayIndex = candidateResponse?.findIndex(
+      (response) => response.questionNumber === questionAnswerData.questionNumber
     );
-    setSelectedOption(
-      candidateResponse[responseArrayIndex]?.clickedOPtionIndex
-    );
+    setSelectedOption(candidateResponse[responseArrayIndex]?.clickedOptionIndex ?? null);
   }, [questionAnswerData.questionNumber]);
 
   return (
@@ -69,7 +79,7 @@ const QuestionCard = ({
       <div className="p-3">
         <Button
           onClick={handleClearResponse}
-          color="#E5D1FA"
+          style={{ color: "#E5D1FA" }}
           id="clear_response_button"
         >
           Clear Response
@@ -78,4 +88,5 @@ const QuestionCard = ({
     </div>
   );
 };
+
 export default QuestionCard;

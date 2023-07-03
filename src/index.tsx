@@ -5,12 +5,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import QuestionCardContextProvider from "./context/QuestionContext";
+import CandidateContextProvider from "./context/CandidateContext"
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <CandidateContextProvider>
     <QuestionCardContextProvider>
       <App />
     </QuestionCardContextProvider>
+    </CandidateContextProvider>
   </React.StrictMode>
 );
 

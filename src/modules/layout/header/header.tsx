@@ -1,6 +1,6 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <header style={styles.header}>
       <h1 style={styles.heading}>Exam</h1>
@@ -8,7 +8,10 @@ const Header = () => {
   );
 };
 
-const styles = {
+const styles: {
+  header: CSSProperties;
+  heading: CSSProperties;
+} = {
   header: {
     backgroundColor: "rgb(230, 97, 97)",
     padding: "20px",

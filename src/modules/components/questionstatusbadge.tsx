@@ -1,7 +1,17 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const QuestionStatusBadge = ({ data = {} }) => {
-  const [styleForTheBadge, setStyleForBadge] = useState();
+interface QuestionStatusBadgeProps {
+  data: {
+    number?: number;
+    isAnswered?: boolean;
+    isVisited?: boolean;
+    isNotAnswered?: boolean;
+    isFlagged?: boolean;
+  };
+}
+
+const QuestionStatusBadge: React.FC<QuestionStatusBadgeProps> = ({ data = {} }) => {
+  const [styleForTheBadge, setStyleForBadge] = useState<string | undefined>();
   const { number, isAnswered, isVisited, isNotAnswered, isFlagged } = data;
   useEffect(() => {
     if (isAnswered) {
@@ -17,7 +27,7 @@ const QuestionStatusBadge = ({ data = {} }) => {
 
   return (
     <div
-      className={`question-status-square  question-status-square-not-answered styleForTheBadge ${styleForTheBadge}`}
+      className={`question-status-square question-status-square-not-answered ${styleForTheBadge}`}
     >
       {number}
     </div>
