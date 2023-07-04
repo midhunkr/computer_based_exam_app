@@ -43,7 +43,7 @@ const StatusCard = () => {
             isVisited={true}
             number={1}
           />
-          <div>Green: Answered</div>
+          <div>Gray: Visited</div>
         </div>
         <div className="d-flex align-items-center gap-1">
           <QuestionStatusBadge
@@ -52,7 +52,7 @@ const StatusCard = () => {
             isVisited={false}
             number={1}
           />
-          <div>Yellow: Visited</div>
+          <div>Green: Answered</div>
         </div>
       </div>
     </div>

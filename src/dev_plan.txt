@@ -1,0 +1,8 @@
+#further things to be added
+
+As of Jul 3
+
+1.Close the exam once the timer is complete
+2.Login
+3.Back end integration - Dynamic questions
+4.Result analysis for the admin user

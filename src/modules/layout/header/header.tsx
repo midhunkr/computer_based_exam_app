@@ -5,7 +5,10 @@ const Header: React.FC = () => {
   return (
     <div style={styles.header} className="d-flex justify-content-between">
       <h1 style={styles.heading}>Exam</h1>
-      <CountdownTimer timeLimitInMinutes={1}/>
+      <div className="d-flex align-items-center">
+        <div className=" mr-2">Remaining time</div>
+        <CountdownTimer timeLimitInMinutes={1} />
+      </div>
     </div>
   );
 };
