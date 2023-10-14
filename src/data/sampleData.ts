@@ -1,4 +1,10 @@
-export const questionAnswerCollection = [
+interface AnswerShape{
+  question:string;
+  options:string[];
+  correctOptionIndex:number;
+  questionNumber:number
+}
+export const questionAnswerCollection:AnswerShape[] = [
   {
     question: "What is the capital of France?",
     options: ["Paris", "Berlin", "Madrid", "Rome"],
@@ -81,43 +87,5 @@ export const questionAnswerCollection = [
     options: ["Rationalism", "Empiricism", "Idealism", "Existentialism"],
     correctOptionIndex: 1,
     questionNumber: 10,
-  },
-];
-
-export const questionList = [
-  {
-    number: 1,
-    isAnswered: true,
-    isVisited: false,
-    isNotAnswered: false,
-    isFlagged: false,
-  },
-  {
-    number: 2,
-    isAnswered: false,
-    isVisited: true,
-    isNotAnswered: false,
-    isFlagged: false,
-  },
-  {
-    number: 3,
-    isAnswered: true,
-    isVisited: true,
-    isNotAnswered: false,
-    isFlagged: false,
-  },
-  {
-    number: 4,
-    isAnswered: false,
-    isVisited: false,
-    isNotAnswered: true,
-    isFlagged: false,
-  },
-  {
-    number: 5,
-    isAnswered: false,
-    isVisited: false,
-    isNotAnswered: false,
-    isFlagged: true,
   },
 ];

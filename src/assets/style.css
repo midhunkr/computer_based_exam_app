@@ -1,10 +1,13 @@
 /* Question Card Section */
 
 .question-card-root {
-  border: 1px solid black;
-  width: 800px;
-  height: 500px;
+  border: 1px solid rgb(247, 243, 243);
+  border-radius: 15px;
+  width: 900px;
+  height: 700px;
   overflow: auto;
+  box-shadow: 0px 0px 20px -8px rgba(0,0,0,0.75);
+
 }
 
 .question-title {
@@ -18,18 +21,24 @@
 
 #clear_response_button {
   background-color: #e5d1fa;
-  font-family: Verdana, Geneva, Tahoma, sans-serif
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color : "#E5D1FA";
 }
 
 .status-card-root {
-  border: 1px solid black;
   width: 300px;
+  box-shadow: 0px 0px 20px -8px rgba(0,0,0,0.75);
+  border-radius: 15px;
 }
 .status-card-title {
   background-color: #537fe7;
   color: #181823;
   font-weight: bold;
-  border-bottom: 1px solid black;
+  width:300px;
+  height: 100%;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+
 }
 .question-list-container {
   background-color: #f0eeed;
@@ -61,7 +70,98 @@
   background-color: #f5f5f5;
 }
 
+.question-status-square-visited {
+  background-color: #89b6b3;
+  color: #fff;
+}
+
 .question-status-square-flagged {
   background-color: #ffc107;
   color: #fff;
 }
+
+
+.candidate-image-holder{
+ border: 1px solid black;
+ padding: 10px;
+ width: 170px;
+  height: 220px;
+}
+
+.candidate-image{
+  width: 150px;
+  height: 200px;
+}
+
+.profile-data-root{
+  background-color: rgb(219, 207, 207);
+  height: 80vh;
+}
+
+.candidate-name{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.countdown-timer{
+  color: white;
+}
+
+.customModal {
+  height: 400px;
+  width: 800px;
+  /* The element is removed from the normal document flow, 
+  and no space is created for the element in the page layout.
+  The element is positioned relative to its initial containing block,
+  which is the viewport in the case of visual media */
+  position: fixed; /* Change to 'fixed' */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  border-radius: 30px;
+  box-shadow: 0px 0px 20px -8px rgba(0,0,0,0.75);
+}
+
+.custom-modal-header{
+  background-color: white;
+  height:50px;
+  width: 100%;
+  color: black;
+  text-align: start;
+  font-weight: 800;
+  font-size: large;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 10px;
+  align-items: center;
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
+  border-bottom: 1px solid #D0D4CA;
+}
+
+.custom-modal-body {
+  height: calc(400px - 50px - 50px);
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid #D0D4CA;
+}
+
+.custom-modal-footer{
+  display: flex;
+  gap: 5px;
+  height: 50px;
+  align-items: center;
+  justify-content: flex-end;
+  background-color:white;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  padding-right:30px;
+}
+
+.exam-over-status{
+  color: #000;
+  padding-top: 150px;
+}
+
