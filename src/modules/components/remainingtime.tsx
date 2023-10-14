@@ -1,15 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import { formatTime } from "./utils";
+import Modal from "../reusable/modal";
+import { AppString } from "../../constants/strings";
 
 interface CountdownTimerProps {
+  /**
+   * Should specify the time limit in minutes
+   */
   timeLimitInMinutes: number;
 }
 
-const CountdownTimer: React.FC<CountdownTimerProps> = ({ timeLimitInMinutes }) => {
-  const [timeRemaining, setTimeRemaining] = useState<number>(timeLimitInMinutes * 60);
+const CountdownTimer: React.FC<CountdownTimerProps> = ({
+  timeLimitInMinutes,
+}) => {
+  const [timeRemaining, setTimeRemaining] = useState<number>(
+    timeLimitInMinutes * 60
+  );
 
   useEffect(() => {
     const timerId = setInterval(() => {
-      setTimeRemaining(prevTime => {
+      setTimeRemaining((prevTime) => {
         if (prevTime > 0) {
           return prevTime - 1;
         } else {
@@ -18,28 +28,29 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ timeLimitInMinutes }) =
         }
       });
     }, 1000);
-  
+
     return () => {
       clearInterval(timerId);
     };
   }, []);
-  
 
-  const formatTime = (): string => {
-    const hours: number = Math.floor(timeRemaining / 3600);
-    const minutes: number = Math.floor((timeRemaining % 3600) / 60);
-    const seconds: number = timeRemaining % 60;
-
-    return `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
+  const ExamOverStatus = () => (
+    <div className="exam-over-status">{AppString.EXAM_OVER_DESCRIPTION}</div>
+  );
+  const renderModal = () => {
+    if (timeRemaining === 0) {
+      return (
+        <Modal title={AppString.EXAM_OVER_MODAL_TITLE} isVisible>
+          <ExamOverStatus />
+        </Modal>
+      );
+    }
+    return null;
   };
-
-  const padZero = (num: number): string => {
-    return num.toString().padStart(2, '0');
-  };
-
   return (
-    <div className='countdown-timer'>
-      <h4>{formatTime()}</h4>
+    <div className="countdown-timer">
+      {formatTime(timeRemaining)}
+      {renderModal()}
     </div>
   );
 };

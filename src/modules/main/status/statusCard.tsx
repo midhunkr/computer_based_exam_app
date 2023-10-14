@@ -2,7 +2,7 @@ import QuestionStatusBadge from "../../components/questionstatusbadge";
 import { questionAnswerCollection } from "../../../data/sampleData";
 import { useContext } from "react";
 import { QuestionCardContext } from "../../../context/QuestionContext";
-import { v4 as uuidv4 } from "uuid";
+import { AppString } from "../../../constants/strings";
 
 const StatusCard = () => {
   // Context
@@ -12,7 +12,7 @@ const StatusCard = () => {
   return (
     <div className="status-card-root mt-3">
       <div className="status-card-title d-flex justify-content-center">
-        Exam Status
+        {AppString.EXAM_STATUS_CARD_TITLE}
       </div>
       <div className="d-flex flex-wrap justify-content-center question-list-container">
         {questionAnswerCollection.map((question) => (

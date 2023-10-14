@@ -18,7 +18,6 @@ const QuestionStatusBadge: React.FC<QuestionStatusBadgeProps> = React.memo(
     const [styleForTheBadge, setStyleForBadge] = useState<string>(
       "question-status-square-not-answered"
     );
-    console.log("changed",isAnswered, isVisited, isFlagged,number)
 
     useEffect(() => {
       if (isAnswered) {
